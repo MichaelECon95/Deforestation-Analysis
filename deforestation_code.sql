@@ -1,6 +1,3 @@
-
-
-
 DROP VIEW IF EXISTS forestation;
 
 CREATE VIEW forestation AS
@@ -37,8 +34,6 @@ FROM forestation
 WHERE year = 1990
   AND region = 'World'
 
-41,282,694.9
-
 /*
 1B) What was the total forest area (in sq km) of the world in 2016?
 Please keep in mind that you can use the country record in the table
@@ -59,7 +54,6 @@ FROM forestation
 WHERE year = 2016
   AND country_name = 'World'
 
-39,958,245.9
 
 /*
 1C) What was the change (in sq km) in the forest area of the
@@ -77,8 +71,6 @@ SELECT(
    WHERE year = 1990 AND country_name = 'World')) AS area_difference
 FROM forestation
 LIMIT 1
-
-decrease of 1,324,449
 
 /*
 *1D) What was the percent change in forest area of the world
@@ -101,8 +93,6 @@ SELECT ROUND((((
 FROM forestation
 LIMIT 1
 
-DECREASE of 3.21
--3.21
 
 /*
 1E) If you compare the amount of forest area lost between 1990 and 2016, which
@@ -117,7 +107,6 @@ GROUP BY country_name, total_area_sq_km
 ORDER BY total_area_sq_km DESC
 LIMIT 1
 
-Peru	1,279,999.9891
 
 ---------------------------------------------
 
@@ -136,7 +125,6 @@ WHERE year = 2016
       AND country_name = 'World'
 GROUP BY country_name;
 
-31.38
 
 SELECT
   region,
@@ -147,8 +135,6 @@ WHERE year = 2016
 GROUP BY region
 ORDER BY forest_percentage DESC
 
-Latin America & Caribbean	46.16
-Middle East & North Africa	2.07
 
 /*
 2b. What was the percent forest of the entire world in 1990?
@@ -164,7 +150,6 @@ FROM forestation
 WHERE year = 1990
       AND country_name = 'World'
 GROUP BY country_name;
-32.42
 
 SELECT
   region,
@@ -175,8 +160,6 @@ WHERE year = 1990
 GROUP BY region
 ORDER BY forest_percentage DESC
 
-Latin America & Caribbean	51.03
-Middle East & North Africa	1.78
 
 /*
 2c. Based on the table you created, which regions of the world DECREASED in
@@ -212,23 +195,6 @@ FROM t1
   RIGHT JOIN t2 ON t1.region = t2.region
 ORDER BY forest_change ASC
 
-Results =
-Latin America & Caribbean	51.03, 46.16,	-4.87
-Sub-Saharan Africa	      30.67, 28.79,	-1.88
-World	                    32.42, 31.38,	-1.04
-
-Latin America & Caribbean and Sub-Saharan Africa. = Answer
-
-Full Answer per review =
-
-East Asia & Pacific	        25.78	26.36
-Europe & Central Asia	      37.28	38.04
-Latin America & Caribbean	  51.03	46.16
-Middle East & North Africa	1.78	2.07
-North America	              35.65	36.04
-South Asia	                16.51	17.51
-Sub-Saharan Africa	        30.67	28.79
-World	                      32.42	31.38
 
 ------------------------------------
 
@@ -292,7 +258,6 @@ FROM T1 f
 INNER JOIN T2 t ON f.country_name = t.country_name
 ORDER BY percent_change DESC
 
-Iceland	343.9999962	213.66 percent
 
 /*
 3a. Which 5 countries saw the largest amount decrease in forest area from 1990 to 2016?
@@ -329,11 +294,6 @@ WHERE f.country_name != 'World'
 ORDER BY forest_change
 LIMIT 5
 
-Brazil	    Latin America & Caribbean	-541510
-Indonesia	  East Asia & Pacific	      -282193.9844
-Myanmar	    East Asia & Pacific	      -107234.0039
-Nigeria	    Sub-Saharan Africa	      -106506.00098
-Tanzania	  Sub-Saharan Africa	      -102320
 
 /*
 3b. Which 5 countries saw the largest percent decrease in forest area from 1990 to 2016?
@@ -371,11 +331,7 @@ LEFT JOIN T2 t ON f.country_name = t.country_name
 ORDER BY percent_change
 LIMIT 5
 
-Togo	     Sub-Saharan Africa	       -5168.000031	  -75.45
-Nigeria	   Sub-Saharan Africa	       -106506.00098	-61.80
-Uganda	   Sub-Saharan Africa	       -28091.99951	  -59.13
-Mauritania Sub-Saharan Africa	       -1940	        -46.75
-Honduras	 Latin America & Caribbean -36640	        -45.03
+
 
 /*
 3c. If countries were grouped by percent forestation in quartiles, which group had the
@@ -405,7 +361,6 @@ FROM
    WHERE forest_percentage IS NOT NULL
     AND year = 2016 AND country_name != 'World') AS snickers
 
-quartiles = Q1
 
 /*
 3d. List all of the countries that were in the 4th quartile (percent forest > 75%) in 2016.
@@ -456,15 +411,7 @@ WHERE quartiles = 'Q4'
 GROUP BY country_name, quartiles, region
 ORDER BY forest_percentage DESC
 
-Suriname	              Latin America & Caribbean	98.26
-Micronesia, Fed. Sts.		East Asia & Pacific	91.86
-Gabon		                Sub-Saharan Africa	90.04
-Seychelles		          Sub-Saharan Africa	88.41
-Palau		                East Asia & Pacific	87.61
-American Samoa		      East Asia & Pacific	87.50
-Guyana		              Latin America & Caribbean	83.90
-Lao PDR		              East Asia & Pacific	82.11
-Solomon Islands		      East Asia & Pacific	77.86
+
 
 /*
 3e. How many countries had a percent forestation higher than the United States in 2016?
@@ -479,7 +426,6 @@ WHERE year = 2016
   AND country_name = 'United States'
 GROUP BY country_name
 
-33.93 percent
 
 WITH t1 AS
   (SELECT
